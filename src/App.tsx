@@ -10,10 +10,20 @@ import { TextItem } from "./types";
 import { ResultCard } from "./components";
 
 const TEXT_ITEM_LIST: TextItem[] = [];
+const LOCAL_STORAGE_KEY = "TEXTS";
 
 function App() {
   const [prompt, setPrompt] = useState("Write a poem about a dog wearing skis");
-  const [items, setItems] = useState(TEXT_ITEM_LIST);
+
+  const browserText = localStorage.getItem(LOCAL_STORAGE_KEY);
+  let defaultItemList;
+  if(browserText) {
+    defaultItemList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '') as TextItem[];
+  } else {
+    defaultItemList = TEXT_ITEM_LIST;
+  }
+
+  const [items, setItems] = useState(defaultItemList);
 
   const onClick = async () => {
     const response = getResponse(prompt).then((res) => {
@@ -23,7 +33,8 @@ function App() {
       };
       setItems((prevItems) => {
         const copy = [...prevItems];
-        copy.push(newItem);
+        copy.unshift(newItem);
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(copy));
         return copy;
       });
     });
