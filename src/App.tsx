@@ -28,7 +28,7 @@ function App() {
 
   const browserText = localStorage.getItem(LOCAL_STORAGE_KEY);
   let defaultItemList;
-  if (browserText == '5') {
+  if (browserText) {
     defaultItemList = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_KEY) || ""
     ) as TextItem[];
@@ -88,7 +88,9 @@ function App() {
                   Generate Some Text!
                 </Button>
               </div>
-              {error && <InlineError message="Type something" fieldID="prompt" />}
+              {error && (
+                <InlineError message="Type something" fieldID="prompt" />
+              )}
             </div>
             {loading && <Spinner accessibilityLabel="Spinner" size="small" />}
             {items.map((item, i) => {
