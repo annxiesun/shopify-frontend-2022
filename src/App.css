@@ -40,3 +40,38 @@
 .input {
   height: 200px;
 }
+
+p {
+  text-align: initial;
+}
+label {
+  text-align: initial;
+}
+h5 {
+  font-weight: 700;
+  text-align: initial;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.generate-button {
+  margin: 24px 0 24px 0;
+}
+
+.textbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.page-container {
+  width: 700px;
+  padding: 24px;
+}
